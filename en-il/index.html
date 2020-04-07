@@ -1,0 +1,83 @@
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/space10-community/conversational-form@1.0.1/dist/conversational-form.min.js" crossorigin></script>
+<head>
+    <title>COVID-19 test</title>
+</head>
+<form id="myForm" cf-Form>
+<!--start messages-->
+<cf-robot-message cf-questions="welcome to Coronavirus form. This form is created to help you report about concern with your health. for more information, go to https://www.health.gov.il"/>
+<cf-robot-message cf-questions="We will begin with some personal questions: "></cf-robot-message>
+
+<!--first name-->
+<input type="text" name="firstname" cf-questions="what`s your first name?"/>
+
+<!--last name-->
+<input type="text" name="lastname" cf-questions="what`s your last name?"/>
+
+<!--birthday-->
+<input type="tel" value="1980-01-01" name="birthday" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" cf-questions="Your Birthday? (format: yyyy-mm-dd)" required />
+<input type="tel" value="053-4567890" name="telTest" pattern="05+[0-9]{1}-[0-9]{3}[0-9]{4}" cf-questions="Your phone #? (format: 051-2344567)" required />
+
+<!--places-->
+<fieldset cf-questions="Were you outside of Israel in the past month?">
+<input type="radio" name="places" id="place-EU" value="Europe">
+<input type="radio" name="places" id="place-US" value="America">
+<input type="radio" name="places" id="place-EAST" value="The Far East">
+<input type="radio" name="places" id="place-AF" value="Africa">
+<input type="radio" name="places" id="place-NO" value="No, I was only in Israel">
+<label for="place-EU">Europe</label>
+<label for="place-US">America</label>
+<label for="place-EAST">The Far East</label>
+<label for="place-AF">Africa</label>
+<label for="place-NO">No, I were only in Israel</label>
+</fieldset>
+
+<cf-robot-message cf-questions="Great job! Now, lets talk about your pervious health: "></cf-robot-message>
+<!-- starting health quesitons-->
+<fieldset cf-questions="Do you have any former diseases?">
+    <input type="checkbox" name="diseases" cf-label="Heart disease" value="Heart disease" />
+    <input type="checkbox" name="diseases" cf-label="Stroke" value="Stroke" />
+    <input type="checkbox" name="diseases" cf-label="Previous case of COVID-19" value="Previous case of COVID-19" />
+    <input type="checkbox" name="diseases" cf-label="Diabetes" value="Diabetes" />
+    <input type="checkbox" name="diseases" cf-label="Lung disease" value="Lung disease" />
+  </fieldset>
+  
+
+  <fieldset cf-questions="Do you have any of this conditions?">
+    <input type="checkbox" name="symptoms" cf-label="high fever" value="fever" id="symptoms-fever" />
+    <input type="checkbox" name="symptoms" cf-label="coughing" />
+    <input type="checkbox" name="symptoms" cf-label="shortness of breath" />
+    <input type="checkbox" name="symptoms" cf-label="head ache" />
+    <input type="checkbox" name="symptoms" cf-label="stomach ache" />
+
+  </fieldset>
+  <input type="number" cf-questions="what`s your body tempature?" cf-conditional-symptoms="fever"/>
+
+  <fieldset cf-questions="Have you been in isolation?">
+      <input type="radio" name="spread" cf-label="No." value="No" />
+      <input type="radio" name="spread" cf-label="Yes,In the past." value="past" />
+      <input type="radio" name="spread" cf-label="Yes, I am now in an isolation." value="present" />
+  </fieldset>
+
+  <fieldset cf-questions="Do you know which number of infected person have you infected?" cf-conditional-spread="past||present">
+      <input type="radio" name="infecter" cf-label="Don`t know/sure." value="No"/>
+      <input type="radio" name="infecter" cf-label="Yes." value="Yes"/>
+   </fieldset>
+
+   <input type="number" cf-questions="Which one? (number)" cf-conditional-infecter="Yes" />
+  
+  <fieldset cf-questions="estimate, how many people were you meet since you start to develop this symptoms?">
+    <input type="radio" name="people" cf-label="1-10"/>
+    <input type="radio" name="people" cf-label="10-20" />
+    <input type="radio" name="people" cf-label="20-30" />
+    <input type="radio" name="people" cf-label="30-40" />
+    <input type="radio" name="people" cf-label="40-50" />
+    <input type="radio" name="people" cf-label="50+" />
+  </fieldset>
+
+<cf-robot-message cf-questions="Thank you for answering this form, this will help us stay healthy, together. Your data will be sent to our databases and We will call you if needed."/>
+<cf-robot-message cf-questions="Meanwhile, remember to wash your hands and Keep personal hygiene. The page will be refreshed for a new submit."/>
+
+
+</form>
+<!--<div id="cf-context" role="cf-context" cf-context></div>-->
+

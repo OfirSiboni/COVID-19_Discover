@@ -1,0 +1,84 @@
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/space10-community/conversational-form@1.0.1/dist/conversational-form.min.js" crossorigin></script>
+<!--This code is made of Convertionl Form 1.0.1.-->
+<head>
+    <title>COVID-19 test</title>
+</head>
+<form id="myForm" cf-Form>
+<!--start messages-->
+<cf-robot-message cf-questions="https://www.health.gov.il :ברוך הבא לשאלון דיווח חשש. במהלך שאלון זה תוכל לדווח על חשש להדבקות בנגיף הקורונה. למידע נוסף"/>
+<cf-robot-message cf-questions=":עכשיו, נתחיל בשאלות עליך "></cf-robot-message>
+
+<!--first name-->
+<input type="text" name="firstname" cf-questions="?מה השם הפרטי שלך"/>
+
+<!--last name-->
+<input type="text" name="lastname" cf-questions="?מה שם המשפחה שלך"/>
+
+<!--birthday-->
+<input type="tel" value="1980-01-01" name="birthday" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" cf-questions="(מה תאריך הלידה שלך? (כתוב בצורת שנה-חודש-יום" required />
+<input type="tel" value="053-4567890" name="telTest" pattern="05+[0-9]{1}-[0-9]{3}[0-9]{4}" cf-questions="(מה מספר הטלפון שלך? (כתוב בצורת 051-2345678" required />
+
+<!--places-->
+<fieldset cf-questions="?האם שהית מחוץ לישראל במהלך החודש האחרון">
+<input type="radio" name="places" id="place-EU" value="Europe">
+<input type="radio" name="places" id="place-US" value="America">
+<input type="radio" name="places" id="place-EAST" value="The Far East">
+<input type="radio" name="places" id="place-AF" value="Africa">
+<input type="radio" name="places" id="place-NO" value="No, I was only in Israel">
+<label for="place-EU">אירופה</label>
+<label for="place-US">אמריקה</label>
+<label for="place-EAST">המזרח הרחוק</label>
+<label for="place-AF">אפריקה</label>
+<label for="place-NO">לא, שהיתי רק בישראל</label>
+</fieldset>
+
+<cf-robot-message cf-questions="מעולה! כעת נמשיך בשאלות על המצב הבריאותי שלך"></cf-robot-message>
+<!-- starting health quesitons-->
+<fieldset cf-questions="?האם חלית בעבר באחת המחלות הבאות">
+    <input type="checkbox" name="diseases" cf-label="מחלת לב מכל סוג" value="Heart disease" />
+    <input type="checkbox" name="diseases" cf-label="שבץ" value="Stroke" />
+    <input type="checkbox" name="diseases" cf-label="מקרה קודם של נגיף הקורונה" value="Previous case of COVID-19" />
+    <input type="checkbox" name="diseases" cf-label="סכרת" value="Diabetes" />
+    <input type="checkbox" name="diseases" cf-label="מחלת ריאות מכל סוג" value="Lung disease" />
+  </fieldset>
+  
+
+  <fieldset cf-questions="?האם אתה חווה כרגע אחד מהתסמינים">
+    <input type="checkbox" name="symptoms" cf-label="חום גבוה" value="fever" id="symptoms-fever" />
+    <input type="checkbox" name="symptoms" cf-label="שיעול" />
+    <input type="checkbox" name="symptoms" cf-label="קוצר נשימה" />
+    <input type="checkbox" name="symptoms" cf-label="כאב ראש" />
+    <input type="checkbox" name="symptoms" cf-label="כאב בטן" />
+
+  </fieldset>
+  <input type="number" cf-questions="?מה טמפרטורת הגוף הנוכחית שלך" cf-conditional-symptoms="fever"/>
+
+  <fieldset cf-questions="?האם היית בבידוד">
+      <input type="radio" name="spread" cf-label=".לא" value="No" />
+      <input type="radio" name="spread" cf-label="כן, בעבר" value="past" />
+      <input type="radio" name="spread" cf-label="כן, כרגע" value="present" />
+  </fieldset>
+
+  <fieldset cf-questions="?האם אתה יודע מאיזה מספר חולה אתה חושש שנדבקת" cf-conditional-spread="past||present">
+      <input type="radio" name="infecter" cf-label="לא יודע/בטוח" value="No"/>
+      <input type="radio" name="infecter" cf-label="כן" value="Yes"/>
+   </fieldset>
+
+   <input type="number" cf-questions="(איזה? (מספר" cf-conditional-infecter="Yes" />
+  
+  <fieldset cf-questions="?תעריך: עם כמה אנשים באת במגע מאז שהופיעו תסמינים אלה">
+    <input type="radio" name="people" cf-label="1-10"/>
+    <input type="radio" name="people" cf-label="10-20" />
+    <input type="radio" name="people" cf-label="20-30" />
+    <input type="radio" name="people" cf-label="30-40" />
+    <input type="radio" name="people" cf-label="40-50" />
+    <input type="radio" name="people" cf-label="50+" />
+  </fieldset>
+
+<cf-robot-message cf-questions=".תודה שענית על שאלון זה, בעזרתך נוכל להשאר בריאים- יחד. הנתונים שלך ישלחו למשרד הבריאות ויתקשרו אליך במידת הצורך"/>
+<cf-robot-message cf-questions=".בינתיים, הקפד על היגיינה אישית והמנע מהתקהלות גדולה. הדף ירוענן למען כתיבת תגובה חדשה לאדם אחר"/>
+
+
+</form>
+<!--<div id="cf-context" role="cf-context" cf-context></div>-->
+
